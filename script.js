@@ -95,3 +95,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     checkWin()
 
+    function moveDown(){
+        //get column
+        for(let i=0; i<4; i++){
+            let totalOne = parseInt(squares[i].innerHTML)
+            let totalTwo = parseInt(squares[i+4].innerHTML)
+            let totalThree = parseInt(squares[i+4*2].innerHTML)
+            let totalFour = parseInt(squares[i+4*3].innerHTML)
+            let column = [totalOne,totalTwo,totalThree,totalFour]
+
+            let filteredColumn = column.filter(x => x!=0 )
+            let missing = 4 - filteredColumn.length
+            let zeros = Array(missing).fill(0)
+            let newColumn = zeros.concat(filteredColumn)
+
+            squares[i].innerHTML = newColumn[0]
+            squares[i+4].innerHTML = newColumn[1]
+            squares[i+4*2].innerHTML = newColumn[2]
+            squares[i+4*3].innerHTML = newColumn[3]
+        }
+    }
+
+    function moveUp(){
+        //get column
+        for(let i=0; i<4; i++){
+            let totalOne = parseInt(squares[i].innerHTML)
+            let totalTwo = parseInt(squares[i+4].innerHTML)
+            let totalThree = parseInt(squares[i+4*2].innerHTML)
+            let totalFour = parseInt(squares[i+4*3].innerHTML)
+            let column = [totalOne,totalTwo,totalThree,totalFour]
+
+            let filteredColumn = column.filter(x => x!=0 )
+            let missing = 4 - filteredColumn.length
+            let zeros = Array(missing).fill(0)
+            let newColumn = filteredColumn.concat(zeros)
+
+            squares[i].innerHTML = newColumn[0]
+            squares[i+4].innerHTML = newColumn[1]
+            squares[i+4*2].innerHTML = newColumn[2]
+            squares[i+4*3].innerHTML = newColumn[3]
+        }
+    }
+
+    function sumColumn(){
+        for (let i=0; i <12; i++){ //end before index 12 because is has no "below neighbour"
+            if(squares[i].innerHTML == squares[i+4].innerHTML){
+                let combineNum = parseInt(squares[i].innerHTML) + parseInt(squares[i+4].innerHTML)
+                squares[i].innerHTML = combineNum
+                squares[i+4].innerHTML = 0
+                score += combineNum
+                scoreDisplay.innerHTML = score
+            }
+        }
+
+        checkWin()
+    }

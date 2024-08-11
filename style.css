@@ -14,10 +14,10 @@ body{
 }
 
 .grid div{
-    border: solid rgb(68, 65, 65) 2px;
+    border: solid rgb(43, 47, 56) 2px;
     width: 100px;
     height: 100px;
-    background-color: rgb(167, 154, 154);
+    background-color: rgb(167, 164, 219);
     text-align: center;
     vertical-align: middle;
     line-height: 100px;

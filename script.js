@@ -150,3 +150,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
         checkWin()
     }
+
+    //Assign keys
+    function control(event){
+        if(event.keyCode === 39){
+            keyRight()
+        }else if (event.keyCode === 37){
+            keyLeft()
+        }else if (event.keyCode === 38){
+            keyUp()
+        }else if (event.keyCode === 40){
+            keyDown()
+        }
+            
+    }
+    document.addEventListener('keyup',control)
+
+    function keyRight(){
+        moveRight() //move all to right
+        sumRow() //combine neighbour if same number
+        moveRight() //move all to right again
+        generateTwo() //generate new numbers
+    }
+
+    function keyLeft(){
+        moveLeft()
+        sumRow()
+        moveLeft()
+        generateTwo()
+    }
+
+    function keyDown(){
+        moveDown()
+        sumColumn()
+        moveDown()
+        generateTwo()
+    }
+
+    function keyUp(){
+        moveUp()
+        sumColumn()
+        moveUp()
+        generateTwo()
+    }
+
+    function checkWin(){
+        for(let i=0; i < 16; i++){
+            if (squares[i].innerHTML == 2048){
+                alert('Congratulations!! Refresh the page to play again.')
+                document.removeEventListener('keyup', control)
+            }
+        }
+    }
+
+    function checkLose(){
+        let numZeros = 0
+        for(let i = 0; i<16; i++){
+            if(squares[i].innerHTML==0){
+                numZeros++
+            }
+        }
+        if(numZeros===0){
+            alert('Game Over!! Refresh the page to play again.')
+            document.removeEventListener('keyup', control)
+        }
+    }
+})
